@@ -199,7 +199,6 @@ require('lazy').setup({
       },
     },
   },
-
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -222,6 +221,34 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  {
+  "windwp/nvim-autopairs",
+  -- Optional dependency
+  dependencies = { 'hrsh7th/nvim-cmp' },
+  config = function()
+    require("nvim-autopairs").setup {}
+    -- If you want to automatically add `(` after selecting a function or method
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp = require('cmp')
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
+  end,
+  },
+  {
+  "nvim-neo-tree/neo-tree.nvim",
+  version = "*",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+  },
+  config = function ()
+    require('neo-tree').setup {}
+  end,
+  },
+  'neoclide/coc.nvim'
 }, {})
 
 -- [[ Setting options ]]
