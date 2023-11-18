@@ -46,6 +46,9 @@ vim.g.maplocalleader = ' '
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
+
+require("plugins")
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -170,6 +173,8 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+    -- main = "ibl",
+    version = "2.20.8",
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
@@ -248,7 +253,11 @@ require('lazy').setup({
     require('neo-tree').setup {}
   end,
   },
-  'neoclide/coc.nvim'
+  {
+    'neoclide/coc.nvim',
+    branch = "release"
+  },
+  { "zbirenbaum/copilot.lua" }
 }, {})
 
 -- [[ Setting options ]]
